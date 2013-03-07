@@ -9,7 +9,7 @@ This gem achieves independence of things like Bugsnag, Airbrake, etc..
 #### Syntax
 
 ```ruby
-Bukowskis::Trouble.notify EXCEPTION, [METADATA-HASH]
+Trouble.notify EXCEPTION, [METADATA-HASH]
 ````
 
 #### Examples 
@@ -17,6 +17,6 @@ Bukowskis::Trouble.notify EXCEPTION, [METADATA-HASH]
 ```ruby
 exception = RuntimeError.new
 
-Bukowskis::Trouble.notify exception
-Bukowskis::Trouble.notify exception, some_idea_why_it_happened: "I don't know, but try this and that."
+Trouble.notify exception
+Trouble.notify exception, some_idea_why_it_happened: "I don't know, but try this and that."
 ```

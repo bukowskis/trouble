@@ -10,8 +10,6 @@ Gem::Specification.new do |spec|
 
   spec.files       = Dir['Rakefile', '{bin,lib,man,test,spec}/**/*', 'README*', 'LICENSE*'] & `git ls-files -z`.split("\0")
 
-  spec.add_dependency('bugsnag')
-
   spec.add_development_dependency('rspec')
   spec.add_development_dependency('guard-rspec')
   spec.add_development_dependency('rb-fsevent')
