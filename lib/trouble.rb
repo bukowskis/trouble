@@ -5,7 +5,7 @@ module Trouble
 
   def notify(exception, metadata = nil)
     exception.set_backtrace(caller) unless exception.backtrace
-    notify! exception, metadat
+    notify! exception, metadata
   end
 
   private
