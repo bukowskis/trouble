@@ -6,8 +6,6 @@ module Trouble
     notify! exception, metadata
   end
 
-  # Takes anything that responds to "<<". Usually an IO object (via File.open), or a Logger.new instance.
-  #
   def logger=(object)
     @logger = object
   end
@@ -28,7 +26,17 @@ module Trouble
     rows << "   | Exception: #{exception.inspect}"
     rows << "   | Metadata:  #{metadata.inspect}"
     rows << "   \\ Location:  #{exception.backtrace.first}\n"
-    logger << rows.join("\n")
+    log! rows.join("\n")
+  end
+
+  def log!(string)
+    if logger.respond_to?(:<<)
+      logger << string
+    elsif logger.respond_to?(:write)
+      logger.write string
+    else
+      logger.error string
+    end
   end
 
 end
