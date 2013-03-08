@@ -1,5 +1,3 @@
-require 'bugsnag'
-
 module Trouble
   extend self
 
@@ -8,12 +6,29 @@ module Trouble
     notify! exception, metadata
   end
 
+  # Takes anything that responds to "<<". Usually an IO object (via File.open), or a Logger.new instance.
+  #
+  def logger=(object)
+    @logger = object
+  end
+
+  def logger
+    @logger
+  end
+
   private
 
-  def notify!
-    if defined?(Bugsnag)
-      Bugsnag.notify(exception, metadata)
-    end
+  def notify!(exception, metadata)
+    log(exception, metadata)            if logger
+    Bugsnag.notify(exception, metadata) if defined?(Bugsnag)
+  end
+
+  def log(exception, metadata)
+    rows = ['TROUBLE NOTIFICATION']
+    rows << "   | Exception: #{exception.inspect}"
+    rows << "   | Metadata:  #{metadata.inspect}"
+    rows << "   \\ Location:  #{exception.backtrace.first}\n"
+    logger << rows.join("\n")
   end
 
 end
