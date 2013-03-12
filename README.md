@@ -1,8 +1,10 @@
-# Rationale
+# Trouble
 
-A unified wrapper to report trouble.
+A unified wrapper to report errors and Exceptions.
 
-This gem achieves independence of things like Bugsnag, Airbrake, etc.. If any of those is defined, Trouble will pass on the exception to them. Additionaly, everything is written to a custom logger you specify.
+This gem achieves independence of things like Bugsnag, Airbrake, etc.. If any of those is defined, Trouble will pass on the exception to them. Additionaly, everything is written to a custom logger you specify (defaults to `Rails.logger`).
+
+Currently only Bugsnag is defined as a working backend.
 
 # Usage
 
@@ -15,7 +17,6 @@ Trouble.notify EXCEPTION, [METADATA-HASH]
 #### Examples 
 
 ```ruby
-Trouble.logger = Rails.logger
 exception = RuntimeError.new
 
 Trouble.notify exception

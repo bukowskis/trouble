@@ -23,4 +23,12 @@ def ensure_class(name)
   ensure_class_or_module(name, :class)
 end
 
-Trouble.logger = Logger.new('/dev/null')
+RSpec.configure do |config|
+  config.before do
+    Trouble.config.logger = nil
+  end
+
+  config.after do
+    Trouble.reset!
+  end
+end
