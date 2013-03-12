@@ -4,7 +4,7 @@ Gem::Specification.new do |spec|
 
   spec.authors      = %w{ bukowskis }
   spec.summary      = "A generic abstraction layer for reporting errors and Exceptions."
-  spec.description  = "This gem achieves independence of things like Bugsnag, Airbrake, etc.. If any of those is defined, Trouble will pass on the exception to them."
+  spec.description  = "A generic abstraction layer for reporting errors and Exceptions. This gem achieves independence of things like Bugsnag, Airbrake, etc.. If any of those is defined, Trouble will pass on the exception to them."
   spec.homepage     = 'https://github.com/bukowskis/trouble'
   spec.license      = 'MIT'
 
