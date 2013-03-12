@@ -34,7 +34,7 @@ module Trouble
       logger << string
     elsif logger.respond_to?(:write)
       logger.write string
-    else
+    elseif logger.respond_to?(:error)
       logger.error string
     end
   end
