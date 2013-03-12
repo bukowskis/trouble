@@ -6,6 +6,12 @@ This gem achieves independence of things like Bugsnag, Airbrake, etc.. If any of
 
 Currently only Bugsnag is defined as a working backend.
 
+# Installation
+
+```bash
+gem install trouble
+````
+
 # Usage
 
 #### Syntax
