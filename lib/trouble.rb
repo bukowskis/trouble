@@ -33,11 +33,7 @@ module Trouble
   # Internal: Log to the current Logger.
   #
   def self.log(exception, metadata)
-    rows = ['TROUBLE NOTIFICATION']
-    rows << "   | Exception: #{exception.inspect}"
-    rows << "   | Metadata:  #{metadata.inspect}"
-    rows << "   \\ Location:  #{exception.backtrace.first}\n"
-    config.logger.error rows.join("\n")
+    config.logger.error "TROUBLE NOTIFICATION #{exception.inspect} at #{exception.backtrace.first} with metadata #{metadata.inspect}"
   end
 
 end

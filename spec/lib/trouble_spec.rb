@@ -21,7 +21,7 @@ describe Trouble do
       end
 
       it 'logs the output' do
-        trouble.config.logger .should_receive(:error) do |string|
+        trouble.config.logger.should_receive(:error) do |string|
           string.should include('TROUBLE')
           string.should include('TroubleTestException')
           string.should include('big problems')
@@ -47,7 +47,7 @@ describe Trouble do
     end
   end
 
-  describe '.logger' do
+  describe '.config' do
     before do
       Trouble.reset!
     end
