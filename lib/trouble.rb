@@ -19,6 +19,7 @@ module Trouble
   def self.notify(exception, metadata = nil)
     exception.set_backtrace(caller) unless exception.backtrace
     notify! exception, metadata
+    increment_metric
   end
 
   private
@@ -28,6 +29,12 @@ module Trouble
   def self.notify!(exception, metadata)
     log(exception, metadata)            if config.logger
     Bugsnag.notify(exception, metadata) if defined?(Bugsnag)
+  end
+  
+  # Internal: track exceptions metric 
+  #
+  def self.increment_metric
+    Meter.increment('exceptions') if defined?(Meter)
   end
 
   # Internal: Log to the current Logger.
