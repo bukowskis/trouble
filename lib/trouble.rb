@@ -1,4 +1,5 @@
 require 'trouble/configuration'
+require 'trouble/middleware'
 
 # A generic wrapper to report errors and Exceptions.
 #
