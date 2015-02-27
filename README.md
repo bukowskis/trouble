@@ -28,3 +28,10 @@ exception = RuntimeError.new
 Trouble.notify exception
 Trouble.notify exception, some_idea_why_it_happened: "I don't know, but try this and that."
 ```
+
+# Rails Middleware
+
+```ruby
+# config/application.rb
+config.middleware.insert_after ActionDispatch::DebugExceptions, 'Trouble::Middleware'
+```
