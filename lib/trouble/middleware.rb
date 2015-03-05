@@ -18,7 +18,7 @@ module Trouble
       return [400, {}, ['']]
 
     rescue ActionController::BadRequest
-      raise
+      return [400, {}, ['']]
 
     rescue => exception
       logger.fatal [$!.class, $!.message, $!.backtrace[2..5]].join("\n")
