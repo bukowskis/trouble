@@ -17,6 +17,9 @@ module Trouble
       raise unless exception.message.include?('invalid %-encoding')
       return [400, {}, ['']]
 
+    rescue ActionController::BadRequest
+      return [400, {}, ['']]
+
     rescue => exception
       logger.fatal [$!.class, $!.message, $!.backtrace[2..5]].join("\n")
       ::Trouble.notify exception
