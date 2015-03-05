@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    trouble (0.0.9)
+    trouble (0.0.10)
 
 GEM
   remote: https://rubygems.org/
