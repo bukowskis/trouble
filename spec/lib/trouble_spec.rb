@@ -49,18 +49,18 @@ describe Trouble do
 
     it 'does not notify the error service' do
       Bugsnag.should_not_receive(:notify)
-      trouble.log exception, metadata.merge(notify_error_service: false)
+      trouble.log exception, metadata
     end
 
     it 'increments the metric' do
       trouble.should_receive(:increment_metric)
-      trouble.log exception, metadata.merge(notify_error_service: false)
+      trouble.log exception, metadata
     end
 
     it 'logs with the configured logger' do
       trouble.config.logger = logger
       trouble.config.logger.should_receive(:error)
-      trouble.log exception, metadata.merge(notify_error_service: false)
+      trouble.log exception, metadata
     end
   end
 
