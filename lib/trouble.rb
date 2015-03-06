@@ -29,7 +29,9 @@ module Trouble
   #
   def self.notify!(exception, metadata)
     log(exception, metadata)            if config.logger
-    Bugsnag.notify(exception, metadata) if defined?(Bugsnag)
+    if metadata.fetch(:notify_error_service, true)
+      Bugsnag.notify(exception, metadata) if defined?(Bugsnag)
+    end
   end
   
   # Internal: track exceptions metric 

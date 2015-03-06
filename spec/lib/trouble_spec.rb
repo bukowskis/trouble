@@ -42,6 +42,25 @@ describe Trouble do
         Bugsnag.should_receive(:notify).with(exception, metadata)
         trouble.notify exception, metadata
       end
+
+      context 'with { notify_error_service: false } in the metadata' do
+
+        it 'does not notify the error service' do
+          Bugsnag.should_not_receive(:notify)
+          trouble.notify exception, metadata.merge(notify_error_service: false)
+        end
+
+        it 'increments the metric' do
+          trouble.should_receive(:increment_metric)
+          trouble.notify exception, metadata.merge(notify_error_service: false)
+        end
+
+        it 'logs with the configured logger' do
+          trouble.config.logger = logger
+          trouble.config.logger.should_receive(:error)
+          trouble.notify exception, metadata.merge(notify_error_service: false)
+        end
+      end
     end
   end
 
