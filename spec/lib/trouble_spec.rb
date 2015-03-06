@@ -38,11 +38,9 @@ describe Trouble do
         Bugsnag.stub!(:notify)
       end
 
-      describe '.notify' do
-        it 'uses Bugsnag as notification backend' do
-          Bugsnag.should_receive(:notify).with(exception, metadata)
-          trouble.notify exception, metadata
-        end
+      it 'uses Bugsnag as notification backend' do
+        Bugsnag.should_receive(:notify).with(exception, metadata)
+        trouble.notify exception, metadata
       end
     end
   end
