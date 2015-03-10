@@ -59,7 +59,7 @@ module Trouble
   # Internal: Log to the current Logger.
   #
   def self.log_in_logger(exception, metadata)
-    config.logger.error("TROUBLE NOTIFICATION #{exception.inspect} at #{exception.backtrace.first} with metadata #{metadata.inspect}") if config.logger
+    config.logger.error("TROUBLE LOG #{exception.inspect} at #{exception.backtrace.first} with metadata #{metadata.inspect}") if config.logger
   end
 
 end
