@@ -38,12 +38,29 @@ describe Trouble do
         Bugsnag.stub!(:notify)
       end
 
-      describe '.notify' do
-        it 'uses Bugsnag as notification backend' do
-          Bugsnag.should_receive(:notify).with(exception, metadata)
-          trouble.notify exception, metadata
-        end
+      it 'uses Bugsnag as notification backend' do
+        Bugsnag.should_receive(:notify).with(exception, metadata)
+        trouble.notify exception, metadata
       end
+    end
+  end
+
+  describe '.log' do
+
+    it 'does not notify the error service' do
+      Bugsnag.should_not_receive(:notify)
+      trouble.log exception, metadata
+    end
+
+    it 'increments the metric' do
+      trouble.should_receive(:increment_metric)
+      trouble.log exception, metadata
+    end
+
+    it 'logs with the configured logger' do
+      trouble.config.logger = logger
+      trouble.config.logger.should_receive(:error)
+      trouble.log exception, metadata
     end
   end
 
