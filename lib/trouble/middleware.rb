@@ -21,7 +21,7 @@ module Trouble
       return [400, {}, ['']]
 
     rescue => exception
-      logger.fatal [$!.class, $!.message, $!.backtrace[2..5]].join("\n")
+      ::Trouble.config.logger.fatal [$!.class, $!.message, $!.backtrace[2..5]].join("\n")
       ::Trouble.notify exception
       raise
     end
