@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    trouble (0.0.11)
+    trouble (0.0.13)
 
 GEM
   remote: https://rubygems.org/
@@ -45,3 +45,6 @@ DEPENDENCIES
   rb-fsevent
   rspec
   trouble!
+
+BUNDLED WITH
+   1.13.6
