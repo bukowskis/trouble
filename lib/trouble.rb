@@ -47,10 +47,13 @@ module Trouble
   # Internal: Dispatch the Exception to the backend(s).
   #
   def self.notify_error_service(exception, metadata)
-    Bugsnag.notify(exception, metadata) if defined?(Bugsnag)
+    return unless defined? Bugsnag
+    Bugsnag.notify(exception) do |report|
+      report.metadata = metadata
+    end
   end
-  
-  # Internal: track exceptions metric 
+
+  # Internal: track exceptions metric
   #
   def self.increment_metric
     Meter.increment('exceptions') if defined?(Meter)

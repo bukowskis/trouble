@@ -39,7 +39,9 @@ describe Trouble do
       end
 
       it 'uses Bugsnag as notification backend' do
-        Bugsnag.should_receive(:notify).with(exception, metadata)
+        report = stub
+        report.should_receive(:metadata=).with(metadata)
+        Bugsnag.should_receive(:notify).with(exception).and_yield(report)
         trouble.notify exception, metadata
       end
     end
